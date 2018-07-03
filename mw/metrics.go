@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"kodix.ru/utils/health"
+	"github.com/kodix/utils/health"
 )
 
 // MetricsMw add http duration metric and BP metric
