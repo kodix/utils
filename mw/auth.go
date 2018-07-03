@@ -6,7 +6,6 @@ package mw
 
 import (
 	"net/http"
-	"github.com/abramd/log"
 	"fmt"
 	"os"
 	"flag"
