@@ -77,12 +77,12 @@ var (
 	clientID    = ""
 )
 
-// SetAllowedRole
+// SetAllowedRole aloowed role setter
 func SetAllowedRole(role string) {
 	allowedRole = role
 }
 
-// SetClientID
+// SetClientID client ID setter
 func SetClientID(id string) {
 	clientID = id
 }
