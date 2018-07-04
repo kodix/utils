@@ -24,7 +24,7 @@ func LogsMw(requestIDKey string, next http.Handler) http.HandlerFunc {
 		reqID := r.Header.Get(requestIDKey)
 		logger := log.Copy()
 		logger.AddPrefix(reqID)
-		next.ServeHTTP(w, r.WithContext(context.WithValue(context.Background(), loggerKey, logger)))
+		next.ServeHTTP(w, r.WithContext(context.WithValue(r.Context(), loggerKey, logger)))
 	}
 }
 
