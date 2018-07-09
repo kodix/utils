@@ -28,9 +28,14 @@ func LogsMw(requestIDKey string, next http.Handler) http.HandlerFunc {
 	}
 }
 
-// LoggerFromCtx - logger getter from request context
-func LoggerFromCtx(r *http.Request) *log.Logger {
-	logger, ok := r.Context().Value(loggerKey).(*log.Logger)
+// LoggerFromRequest - logger getter from request context
+func LoggerFromRequest(r *http.Request) *log.Logger {
+	return LoggerFromCtx(r.Context())
+}
+
+// LoggerFromCtx - logger getter from context
+func LoggerFromCtx(ctx context.Context) *log.Logger {
+	logger, ok := ctx.Value(loggerKey).(*log.Logger)
 	if !ok {
 		return log.Copy()
 	}
