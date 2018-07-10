@@ -51,7 +51,7 @@ func RoleKeyFunc(cid string) KeyFunc {
 // AuthMw check the matcher value. If true - refers to next http.Handler, if false - returns 403 http status
 func AuthMw(next http.Handler, m Matcher) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		logger := LoggerFromCtx(r)
+		logger := LoggerFromRequest(r)
 		if m.Match(r) {
 			next.ServeHTTP(w, r)
 		} else {
