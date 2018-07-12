@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"fmt"
 	"sync/atomic"
-	"github.com/abramd/log"
+	"github.com/kodix/log"
 )
 
 // count of current requests
