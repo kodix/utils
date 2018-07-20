@@ -5,8 +5,8 @@
 package must
 
 import (
-	"os"
 	"encoding/json"
+	"os"
 )
 
 // UnmarshalFile - unmarshal json file or panic
@@ -20,4 +20,3 @@ func UnmarshalFile(dest interface{}, src string) {
 		panic(err)
 	}
 }
-

@@ -6,8 +6,8 @@ package mw
 
 import (
 	"net/http"
-	"testing"
 	"net/http/httptest"
+	"testing"
 )
 
 func next(http.ResponseWriter, *http.Request) {

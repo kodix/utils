@@ -5,10 +5,10 @@
 package mw
 
 import (
-	"net/http"
-	"fmt"
-	"os"
 	"flag"
+	"fmt"
+	"net/http"
+	"os"
 )
 
 // Matcher checks access of request
