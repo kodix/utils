@@ -70,7 +70,7 @@ func TestStrArray_Value(t *testing.T) {
 	}{
 		{
 			"success",
-			StrArray{"1","3","8"},
+			StrArray{"1", "3", "8"},
 			[]byte(`["1","3","8"]`),
 			false,
 		},

@@ -5,9 +5,9 @@
 package fields
 
 import (
+	"database/sql/driver"
 	"encoding/json"
 	"fmt"
-	"database/sql/driver"
 )
 
 // StrArray type for easy db->json->db convert string arrays

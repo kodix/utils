@@ -5,12 +5,13 @@
 package mw
 
 import (
-	"net/http"
-	"github.com/abramd/log"
 	"context"
+	"github.com/kodix/log"
+	"net/http"
 )
 
 type ctxKey string
+
 var loggerKey ctxKey = "logger"
 
 // DefLogsMw - default LogsMw() middleware with requestID = 'X-Request-Id'

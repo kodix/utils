@@ -5,16 +5,16 @@
 package mw
 
 import (
-	"net/http"
+	"github.com/kodix/utils/health"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/kodix/utils/health"
+	"net/http"
 )
 
 // MetricsMw add http duration metric and BP metric
 func MetricsMw(dur prometheus.ObserverVec, bp prometheus.Observer, next http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		promhttp.InstrumentHandlerDuration(dur.MustCurryWith(prometheus.Labels{"endpoint": r.URL.Path}), next).ServeHTTP(w,r)
+		promhttp.InstrumentHandlerDuration(dur.MustCurryWith(prometheus.Labels{"endpoint": r.URL.Path}), next).ServeHTTP(w, r)
 		bp.Observe(float64(health.Len()) / float64(health.Cap()))
 	}
 }

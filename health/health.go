@@ -5,10 +5,10 @@
 package health
 
 import (
-	"net/http"
 	"fmt"
+	"github.com/kodix/log"
+	"net/http"
 	"sync/atomic"
-	"github.com/abramd/log"
 )
 
 // count of current requests
