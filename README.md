@@ -1,4 +1,4 @@
-# utils
+# utils [![Build Status](https://www.travis-ci.org/kodix/utils.svg?branch=master)](https://www.travis-ci.org/kodix/utils) [![Go Report Card](https://goreportcard.com/badge/github.com/kodix/utils)](https://goreportcard.com/report/github.com/kodix/utils)
 
 ## Health
 Пакет с http обработчиком для эндпоинта health (показывает количество текущих соединений и лимит) и 
