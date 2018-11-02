@@ -7,6 +7,7 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
+	"log"
 	"net"
 	"net/http"
 	"strings"
@@ -76,10 +77,13 @@ func Compress(next http.Handler) http.HandlerFunc {
 
 				break L
 			case "deflate":
+				fw, err := flate.NewWriter(w, flate.DefaultCompression)
+				if err != nil {
+					log.Println(err)
+					next.ServeHTTP(w, r)
+				}
 				w.Header().Set("Content-Encoding", "deflate")
 				w.Header().Add("Vary", "Accept-Encoding")
-
-				fw, _ := flate.NewWriter(w, flate.DefaultCompression)
 				defer fw.Close()
 
 				w = &compressResponseWriter{
