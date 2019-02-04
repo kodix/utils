@@ -112,7 +112,7 @@ func (ns *NullString) Scan(value interface{}) error {
 }
 
 // MarshalJSON for NullInt64
-func (ni *NullInt64) MarshalJSON() ([]byte, error) {
+func (ni NullInt64) MarshalJSON() ([]byte, error) {
 	if !ni.Valid {
 		return []byte("null"), nil
 	}
@@ -120,14 +120,14 @@ func (ni *NullInt64) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON for NullInt64
-func (ni *NullInt64) UnmarshalJSON(b []byte) error {
+func (ni NullInt64) UnmarshalJSON(b []byte) error {
 	err := json.Unmarshal(b, &ni.Int64)
 	ni.Valid = (err == nil)
 	return err
 }
 
 // MarshalJSON for NullBool
-func (nb *NullBool) MarshalJSON() ([]byte, error) {
+func (nb NullBool) MarshalJSON() ([]byte, error) {
 	if !nb.Valid {
 		return []byte("null"), nil
 	}
@@ -135,14 +135,14 @@ func (nb *NullBool) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON for NullBool
-func (nb *NullBool) UnmarshalJSON(b []byte) error {
+func (nb NullBool) UnmarshalJSON(b []byte) error {
 	err := json.Unmarshal(b, &nb.Bool)
 	nb.Valid = (err == nil)
 	return err
 }
 
 // MarshalJSON for NullFloat64
-func (nf *NullFloat64) MarshalJSON() ([]byte, error) {
+func (nf NullFloat64) MarshalJSON() ([]byte, error) {
 	if !nf.Valid {
 		return []byte("null"), nil
 	}
@@ -150,14 +150,14 @@ func (nf *NullFloat64) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON for NullFloat64
-func (nf *NullFloat64) UnmarshalJSON(b []byte) error {
+func (nf NullFloat64) UnmarshalJSON(b []byte) error {
 	err := json.Unmarshal(b, &nf.Float64)
 	nf.Valid = (err == nil)
 	return err
 }
 
 // MarshalJSON for NullString
-func (ns *NullString) MarshalJSON() ([]byte, error) {
+func (ns NullString) MarshalJSON() ([]byte, error) {
 	if !ns.Valid {
 		return []byte("null"), nil
 	}
@@ -165,7 +165,7 @@ func (ns *NullString) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON for NullString
-func (ns *NullString) UnmarshalJSON(b []byte) error {
+func (ns NullString) UnmarshalJSON(b []byte) error {
 	err := json.Unmarshal(b, &ns.String)
 	ns.Valid = (err == nil)
 	return err
