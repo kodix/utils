@@ -5,8 +5,12 @@
 package health
 
 import (
+	"context"
 	"fmt"
 	"github.com/kodix/log"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"net/http"
 	"sync/atomic"
 )
@@ -63,5 +67,18 @@ func BackPressure(h http.Handler) http.HandlerFunc {
 			log.Debugln("requests limit exceeded")
 			http.Error(w, "requests limit exceeded", http.StatusTooManyRequests)
 		}
+	}
+}
+
+//BackPressure grpc middleware
+func BackPressureInterceptor() grpc.UnaryServerInterceptor {
+	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+		current := atomic.AddUint64(&throttling, 1)
+		defer atomic.AddUint64(&throttling, ^uint64(0))
+		if current < atomic.LoadUint64(&capacity) {
+			return handler(ctx, req)
+		}
+		log.Debugln("requests limit exceeded")
+		return nil, status.Errorf(codes.ResourceExhausted, "requests limit exceeded")
 	}
 }
